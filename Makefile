@@ -1,12 +1,12 @@
 NAME=ft_turing
 FILE=turing_machine.ml
 
-all: compile exec
+all: compile
 
 compile:
 	ocamlfind ocamlc -package yojson -linkpkg -o ${NAME} ${FILE}
 
-exec:
+exec: compile
 	./${NAME} sub.json 111-11
 
 clean:
