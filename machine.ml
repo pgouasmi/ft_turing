@@ -38,7 +38,7 @@ type machine_state = {
 
 class machine json_data = object(self)
   val name: string = json_data |> member "name" |> to_string |> String.trim
-  val alphabet: string list =  json_data |> member "alphabet" |> to_list |> List.map to_string
+  val alphabet: string list = json_data |> member "alphabet" |> to_list |> List.map to_string |> List.append ["y"; "n"] 
   val blank: string = json_data |> member "blank" |> to_string
   val states: string list = json_data |> member "states" |> to_list |> List.map to_string
   val initial_state: string = json_data |> member "initial" |> to_string

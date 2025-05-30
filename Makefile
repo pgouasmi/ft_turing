@@ -30,4 +30,6 @@ $(TARGET): $(SOURCES)
 clean:
 	rm -f *.cmi *.cmo $(TARGET)
 
-.PHONY: all clean
+re: clean all
+
+.PHONY: all clean re
