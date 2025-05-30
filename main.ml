@@ -105,12 +105,21 @@ let move_tape tape direction =
   | RIGHT -> { tape with position = tape.position + 1 }
 
   let apply_transition machine state transition = 
-  let new_tape = write_tape state.tape transition.write in
-  let moved_tape = move_tape new_tape transition.action in
-  {
-    tape = moved_tape;
-    current_state = transition.to_state;
-  }
+    let new_tape = write_tape state.tape transition.write in
+    let moved_tape = move_tape new_tape transition.action in
+    
+    (* S'assurer que la nouvelle position existe *)
+    let final_tape = 
+      if not (IntMap.mem moved_tape.position moved_tape.data) then
+        { moved_tape with data = IntMap.add moved_tape.position moved_tape.blank moved_tape.data }
+      else
+        moved_tape
+    in
+    
+    {
+      tape = final_tape;
+      current_state = transition.to_state;
+    }
 
 let rec simulate machine state = 
   if List.mem state.current_state (machine#get_finals) then begin
