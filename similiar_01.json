@@ -1,5 +1,5 @@
 {
-    "name" : "similar_01",
+    "name" : "similar01",
     "alphabet": [ "1", "0", "." ],
     "blank" : ".",
     "states" : [ "scanright", "to_first_1", "to_last_1", "erase_1", "back", "to_first_0", "HALT", "STOP" ],
